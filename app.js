@@ -2,23 +2,25 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-app.use(bodyParser.urlencoded({extended: true}));
 
-var items = ["Buy veggies", "Cook lunch", "Eat lunch"];
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static("public"));
+
+let items = ["Buy veggies", "Cook lunch", "Eat lunch"];
 
 app.set('view engine', 'ejs');
 
 
 //load the home route
 app.get("/", function(req, res){
-    var today = new Date();
-    var options = {
+    let today = new Date();
+    let options = {
         weekday: "long",
         day: "numeric",
         month:"long"
     };
 
-    var day = today.toLocaleDateString("en-IN", options);
+    let day = today.toLocaleDateString("en-IN", options);
     //console.log(day);
 
     res.render('list', {whichDay: day, newlyAddedItems: items});
@@ -27,7 +29,7 @@ app.get("/", function(req, res){
 
 //handling new items post request
 app.post("/", function(req, res){
-    var item = req.body.newItem;
+    let item = req.body.newItem;
     items.push(item);
     res.redirect("/");
 });
