@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+</head>
+<body>
+
+    <!-- scriptlet tag use, only for control flow statements, not output -->
+    <!--
+        <% if(whichDay==="Saturday" || whichDay==="Sunday"){ %>
+            <h1 style="color: rgb(255, 118, 191);"><%= whichDay %> To-Do List</h1>
+        <% } else{ %>
+            <h1 style="color: rgb(113, 113, 255);"><%= whichDay %> To-Do List</h1>
+        <% } %>
+    --> 
+
+    <!-- ejs marker to render value of whichDay -->
+    <h1><%= whichDay %></h1>
+
+    <ul>
+    <%    for(var i=0;i<newlyAddedItems.length;i++){ %>
+            <li> <%= newlyAddedItems[i] %> </li>
+    <%    } %>
+    </ul>
+
+    <form action="/" method="post">
+        <input type="text" name="newItem" placeholder="Add new item">
+        <button type="submit">&#8594;</button>
+    </form>
+</body>
+</html>
