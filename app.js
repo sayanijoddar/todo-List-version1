@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 
 //load the home route
 app.get("/", function (req, res) {
-    let day = date();
+    let day = date.getDate();
     res.render('list', { listType: day, newlyAddedItems: items });
 });
 
